@@ -11,6 +11,8 @@ $employee = query("SELECT * FROM employees");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Employee List</title>
 </head>
+<h3>Employee List</h3>
+<a href="tambah.php">Add Employee</a>
 
 <body>
   <h3>

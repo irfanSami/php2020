@@ -22,3 +22,31 @@ function query($query)
   }
   return $rows;
 }
+function tambah($data)
+{
+  $conn = koneksi();
+  $ln = htmlspecialchars($data['lastname']);
+  $fn = htmlspecialchars($data['firstname']);
+  $tit = htmlspecialchars($data['title']);
+  $toc = htmlspecialchars($data['titleofcourtesy']);
+  $bd = htmlspecialchars($data['birthdate']);
+  $hd = htmlspecialchars($data['hiredate']);
+  $addrs = htmlspecialchars($data['address']);
+  $city = htmlspecialchars($data['city']);
+  $reg = htmlspecialchars($data['region']);
+  $pscode = htmlspecialchars($data['postalcode']);
+  $country = htmlspecialchars($data['country']);
+  $hp = htmlspecialchars($data['homephone']);
+  $ext = htmlspecialchars($data['extension']);
+  $notes = htmlspecialchars($data['notes']);
+  $rt = htmlspecialchars($data['reportsto']);
+  $query = "INSERT INTO employees VALUES (null, '$ln','$fn','$tit','$toc','$bd','$hd','$addrs','$city','$reg',
+  '$pscode','$country','$hp','$ext','$notes','$rt');
+  ";
+  mysqli_query($conn, $query);
+  echo mysqli_error($conn);
+  return mysqli_affected_rows($conn);
+
+
+  //var_dump($data);
+}
