@@ -24,6 +24,7 @@ $emp = query("SELECT * FROM employees WHERE EmployeeID = $id")
     <li>Title : <?= $emp['Title']; ?></li>
     <li>Title of Courtesy : <?= $emp['TitleOfCourtesy']; ?></li>
     <li>Birth Date : <?= $emp['BirthDate']; ?></li>
+    <li>Hire Date : <?= $emp['HireDate']; ?></li>
     <li>Address : <?= $emp['Address']; ?></li>
     <li>City : <?= $emp['City']; ?></li>
     <li>Region :<?= $emp['Region']; ?> </li>
@@ -33,8 +34,8 @@ $emp = query("SELECT * FROM employees WHERE EmployeeID = $id")
     <li>Extension : <?= $emp['Extension']; ?></li>
     <li>Notes : <?= $emp['Notes']; ?></li>
     <li>Reports To : <?= $emp['ReportsTo']; ?></li>
-    <li><a href="">Ubah</a> | <a href="">Hapus</a></li>
-    <li><a href="employeelist.php">Back</a></li>
+    <li><a href="ubah.php?id=<?= $emp['EmployeeID']; ?>">Ubah</a> | <a href="hapus.php?id=<?= $emp['EmployeeID']; ?>" onclick="return confirm('apakah anda yakin?');">Hapus</a></li>
+    <li><a href=" index.php">Back</a></li>
   </ul>
 </body>
 

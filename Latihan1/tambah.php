@@ -6,7 +6,7 @@ if (isset($_POST['tambah'])) {
   if (tambah($_POST) > 0) {
     echo "<script>
     alert('data added');
-    document.location.href = 'employeelist.php';
+    document.location.href = 'index.php';
     
     </script>";
   } else {

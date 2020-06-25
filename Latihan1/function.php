@@ -22,6 +22,8 @@ function query($query)
   }
   return $rows;
 }
+
+
 function tambah($data)
 {
   $conn = koneksi();
@@ -43,8 +45,58 @@ function tambah($data)
   $query = "INSERT INTO employees VALUES (null, '$ln','$fn','$tit','$toc','$bd','$hd','$addrs','$city','$reg',
   '$pscode','$country','$hp','$ext','$notes','$rt');
   ";
-  mysqli_query($conn, $query);
-  echo mysqli_error($conn);
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+
+
+  //var_dump($data);
+}
+
+function hapus($id)
+{
+  $conn = koneksi();
+  mysqli_query($conn, "DELETE from employees WHERE EmployeeID = $id") or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
+
+function ubah($data)
+{
+  $conn = koneksi();
+
+  $id = $data['id'];
+  $ln = htmlspecialchars($data['lastname']);
+  $fn = htmlspecialchars($data['firstname']);
+  $tit = htmlspecialchars($data['title']);
+  $toc = htmlspecialchars($data['titleofcourtesy']);
+  $bd = htmlspecialchars($data['birthdate']);
+  $hd = htmlspecialchars($data['hiredate']);
+  $addrs = htmlspecialchars($data['address']);
+  $city = htmlspecialchars($data['city']);
+  $reg = htmlspecialchars($data['region']);
+  $pscode = htmlspecialchars($data['postalcode']);
+  $country = htmlspecialchars($data['country']);
+  $hp = htmlspecialchars($data['homephone']);
+  $ext = htmlspecialchars($data['extension']);
+  $notes = htmlspecialchars($data['notes']);
+  $rt = htmlspecialchars($data['reportsto']);
+  $query = "UPDATE employees SET 
+              LastName = '$ln',
+              FirstName = '$fn',
+              Title = '$tit',
+              TitleOfCourtesy = '$toc',
+              BirthDate = '$bd',
+              HireDate = '$hd',
+              Address = '$addrs',
+              City = '$city',
+              Region = '$reg',
+              PostalCode = '$pscode',
+              Country = '$country',
+              HomePhone = '$hp',
+              Extension = '$ext',
+              Notes = '$notes',
+              ReportsTo = '$rt'
+              WHERE EmployeeID = $id";
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 
 
