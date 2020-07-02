@@ -1,6 +1,13 @@
 <?php
 require 'function.php';
 $employee = query("SELECT * FROM employees");
+
+if (isset($_POST['cari'])) {
+  $employee = cari($_POST['keyword']);
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +20,12 @@ $employee = query("SELECT * FROM employees");
 </head>
 <h3>Employee List</h3>
 <a href="tambah.php">Add Employee</a>
+<br><br>
+<form action="" method="POST">
+  <input type="text" name="keyword" size="30" autofocus placeholder="Cari yang anda butuhkan" autocomplete="off">
+  <button type="submit" name="cari">CARI</button>
+</form>
+
 
 <body>
   <h3>
@@ -22,6 +35,15 @@ $employee = query("SELECT * FROM employees");
         <th>Name</th>
         <th>Aksi</th>
       </tr>
+
+      <?php if (empty($employee)) : ?>
+        <tr>
+          <td colspan="10">
+            <p>Data Tidak Ditemukan</p>
+          </td>
+        </tr>
+      <?php endif; ?>
+
       <?php $i = 1;
       foreach ($employee as $emp) : ?>
         <tr>

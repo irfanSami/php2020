@@ -102,3 +102,22 @@ function ubah($data)
 
   //var_dump($data);
 }
+
+function cari($keyword)
+{
+  $conn = koneksi();
+  $query = "SELECT * FROM employees WHERE
+            FirstName LIKE '%$keyword%' OR
+            LastName LIKE '%$keyword%' OR
+            City LIKE '%$keyword%' OR
+            Region LIKE '%$keyword%' OR
+            HomePhone LIKE '%$keyword%' OR
+            TitleOfCourtesy LIKE '%$keyword%' 
+            ";
+  $result = mysqli_query($conn, $query);
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+  return $rows;
+}
